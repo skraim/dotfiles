@@ -1,0 +1,14 @@
+session_name: session
+start_directory: ~/dir/
+windows:
+  - window_name: Build
+    panes:
+    - shell_command:
+  - window_name: Development
+    focus: true
+    panes:
+    - shell_command:
+      - cmd: nvim .
+  - window_name: git
+    panes:
+    - shell_command: lazygit
