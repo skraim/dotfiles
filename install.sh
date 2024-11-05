@@ -21,6 +21,7 @@ aclocal; automake --add-missing; autoreconf
 ./configure options
 make
 make install
+cd $HOME
 
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
