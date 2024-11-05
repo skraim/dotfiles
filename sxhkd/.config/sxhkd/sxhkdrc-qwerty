@@ -1,0 +1,154 @@
+# reload sxhkd
+# super + Escape
+# 	pkill -USR1 -x sxhkd
+
+# run terminal
+super + Return
+	alacritty
+
+# app launcher
+super + space
+	$HOME/.config/rofi/scripts/launcher_t1_drun
+
+# run launcher
+super + shift + space
+	$HOME/.config/rofi/scripts/launcher_t1_run
+
+# powermenu
+super + shift + q
+    $HOME/.config/rofi/scripts/powermenu_t2
+
+# # suspend session
+# super + shift + q ; u
+#     systemctl suspend
+
+# # poweroff
+# super + shift + q ; super + shift + s
+#     systemctl poweroff
+
+# # reboot
+# super + shift + q ; super + shift + r
+#     systemctl reboot
+
+# # lock session
+# super + shift + x
+#     i3lock
+
+# close app
+super + shift + c
+	bspc node -c
+
+# toggle floating/fullscreen mode
+super + {v,f}
+	bspc node -t \~{floating,fullscreen}
+
+# pin the window
+super + p
+	bspc node -g sticky
+
+# focus node in directions or switch between fullscreen/floating windows
+super + j
+    if bspc query -N -n focused.fullscreen > /dev/null; \
+		then bspc node next.local.window.hidden -g hidden=off -f -t fullscreen; \
+        elif bspc query -N south > /dev/null; \
+            then bspc node -f south; \
+            else bspc node -f next.local.window.floating; \
+	fi
+
+super + l
+	if bspc query -N -n focused.fullscreen > /dev/null; \
+		then bspc node next.local.window.hidden -g hidden=off -f -t fullscreen; \
+        elif bspc query -N east > /dev/null; \
+            then bspc node -f east; \
+            else bspc node -f next.local.window.floating; \
+	fi
+
+super + h
+	if bspc query -N -n focused.fullscreen > /dev/null; \
+		then bspc node prev.local.window.hidden -g hidden=off -f -t fullscreen; \
+        elif bspc query -N west > /dev/null; \
+            then bspc node -f west; \
+            else bspc node -f prev.local.window.floating; \
+	fi
+
+super + k
+	if bspc query -N -n focused.fullscreen > /dev/null; \
+		then bspc node prev.local.window.hidden -g hidden=off -f -t fullscreen; \
+        elif bspc query -N north > /dev/null; \
+            then bspc node -f north; \
+            else bspc node -f prev.local.window.floating; \
+	fi
+
+# move the window in the direction
+super + shift + {h,j,k,l}
+    bspc node -s {west,south,north,east}
+
+# focus the desktop
+super + {1-9,0}
+	bspc desktop -f {1-9,10}
+
+# move node to the desktop
+super + shift + {1-9,0}
+	bspc node -d {1-9,10} --follow
+
+# move current desktop to next monitor; reorganized all the desktop after
+super + shift + comma
+    current_monitor=$(bspc query -M --monitor focused) && \
+    [ $(bspc query -D -m | wc -l) -eq 1 ] && \
+        free_dt=$(bspc query -D -d '.!occupied' -m next | head -n 1) && \
+        bspc desktop "$free_dt" -m "$current_monitor"; \
+	bspc desktop -m next --follow && \
+	bspc query -M | while read -r monitor; do \
+	    bspc query -D -m "$monitor" --names | sort -g | xargs -rd'\n' bspc monitor "$monitor" -o; \
+	done
+
+# resize the window
+super + d : {h,j,k,l}
+  STEP=50; SELECTION={1,2,3,4}; \
+  bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+  bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+
+super + d : shift + {h,j,k,l}
+  STEP=50; SELECTION={1,2,3,4}; \
+  bspc node -z $(echo "left $STEP 0,bottom 0 -$STEP,top 0 $STEP,right -$STEP 0" | cut -d',' -f$SELECTION) || \
+  bspc node -z $(echo "right $STEP 0,top 0 -$STEP,bottom 0 $STEP,left -$STEP 0" | cut -d',' -f$SELECTION)
+
+# change split 
+super + y
+    bspc node @parent -R 90
+
+# make screenshot
+Print 
+    flameshot gui; bspc node -f 
+
+# audio/media functions
+XF86AudioRaiseVolume
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+
+XF86AudioLowerVolume
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+
+XF86AudioMute
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+XF86AudioMicMute
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioPause
+    playerctl pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+# brightness control
+XF86MonBrightnessDown
+    brightnessctl set 5%-
+
+XF86MonBrightnessUp
+    brightnessctl set +5%

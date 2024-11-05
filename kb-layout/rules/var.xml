@@ -1,0 +1,24 @@
+<!--uac-start-->
+    <layout>
+      <configItem>
+        <name>uac</name>
+        <!-- Keyboard indicator for Ukrainian layouts -->
+        <shortDescription>Ukrainian-clmk</shortDescription>
+        <description>Ukrainian-clmk</description>
+        <countryList>
+          <iso3166Id>UA</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>ukr</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>colemak_reverse</name>
+            <description>Ukrainian (colemak reverse)</description>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+<!--typo-uk-end-->

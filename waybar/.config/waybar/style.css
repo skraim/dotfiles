@@ -1,0 +1,311 @@
+@import url("/home/artem/.cache/wal/colors-waybar.css");
+
+* {
+    font-family: "MesloLGL Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, .7);
+    color: @color10;
+    transition-property: any;
+    transition-duration: .5s;
+    border-bottom: none;
+}
+
+button {
+    border-radius: 2px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+button:hover {
+    background: inherit;
+}
+
+#workspaces {
+    font-size: 20px;
+}
+
+#window {
+    font-size: 18px;
+    color: @color6;
+}
+
+#workspaces button {
+    margin: 0 3px;
+    padding: 0px 5px;
+    color: inherit;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+#workspaces button:hover {
+    background-color: @color2;
+    color: @color3;
+}
+
+#workspaces button.active {
+    color: @color0;
+    background-color: @color6;
+}
+
+#workspaces button.focused {
+    box-shadow: none;
+}
+
+#workspaces button.active:hover {
+    background-color: @color6;
+    border: none;
+    outline: none;
+}
+
+#workspaces button.urgent {
+    background-color: inherit;
+    color: @color7;
+}
+
+#workspaces button.special {
+    min-width: 35px;
+    color: @color6;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+#workspaces button.special.active {
+    color: @color0;
+    background-color: @color6;
+}
+
+#submap {
+    color: @color0;
+    background-color: @color6;
+    padding: 0 5px;
+    border-radius: 2px;
+    font-weight: 700;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#custom-kb-layout {
+    font-size: 18px;
+}
+
+#custom-arch {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #1793d1;
+}
+
+#clock {
+    background-color: transparent;
+    color: @color7;
+    margin-right: 10px;
+}
+
+#battery {
+    background-color: transparent;
+    color: #fcff3d;
+    border-radius: 2px;
+}
+
+#battery.full {
+    color: #69ff94;
+}
+
+#battery.warning {
+    color: #ff9977;
+}
+
+#battery.charging {
+    color: #69ff94;
+}
+
+#battery.plugged {
+    color: #fcff3d;
+}
+
+#battery.charging.full {
+    color: #69ff94;
+}
+
+#battery.plugged.full {
+    color: #69ff94;
+}
+
+@keyframes blink {
+    to {
+        background-color: #dd532e;
+        color: #fff;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: #dd532e;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    background-color: transparent;
+    border-radius: 2px;
+}
+
+#memory {
+    background-color: transparent;
+    border-radius: 2px;
+}
+
+#network {
+    padding: 0 13px 0 9px;
+    background-color: transparent;
+    border-radius: 2px;
+    color: @color6;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+#network:hover {
+    background-color: @color2;
+    color: @color3;
+}
+
+#network.disconnected {
+    color: #dd532e;
+}
+
+#hardware {
+    padding: 0 9px;
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+#hardware:hover {
+    background-color: @color2;
+}
+
+#hardware * {
+    padding: 0 2px;
+}
+
+#custom-kb-layout {
+    padding: 0 9px;
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+#pulseaudio {
+    padding: 0 9px;
+    color: @color6;
+    border-radius: 2px;
+    font-size: 20px;
+    transition-duration: .5s;
+    transition-property: all;
+}
+
+#pulseaudio:hover {
+    background-color: @color2;
+    color: @color3;
+}
+
+#pulseaudio.muted {
+    color: @color10;
+}
+
+#keyboard-state {
+    font-size: 19px;
+}
+
+#keyboard-state label.locked {
+    color: #69ff94;
+}
+
+#oth {
+    font-size: 20px;
+}
+
+#custom-pacman {
+    font-size: 19px;
+    color: @color6;
+    padding: 0 9px;
+}
+
+#custom-pacman.updated {
+    color: @color10;
+}
+
+#custom-vpn, #custom-dunst {
+    font-size: 19px;
+    padding: 0 13px 0 9px;
+    min-width: 0px;
+    border-radius: 2px;
+    transition-duration: .5s;
+    transition-property: all;
+}
+
+#custom-dunst {
+    margin-right: 10px;
+}
+
+#custom-vpn:hover, #custom-dunst:hover {
+    background-color: @color2;
+    color: @color3;
+}
+
+#custom-vpn.connected {
+    color: #69ff94;
+}
+
+#custom-dunst.disabled {
+    color: #dd532e;
+}
+
+window.eDP-1#waybar #custom-kb-layout {
+    font-size: 8px;
+}
+
+window.eDP-1#waybar #custom-arch {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #hardware {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #workspaces {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #custom-pacman {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #custom-vpn, window.eDP-1#waybar #custom-dunst {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #oth {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #pulseaudio {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #custom-kb-layout {
+    font-size: 16px;
+}
+
+window.eDP-1#waybar #keyboard-state {
+    font-size: 16px;
+}

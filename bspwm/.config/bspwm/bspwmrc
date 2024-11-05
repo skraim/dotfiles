@@ -1,0 +1,57 @@
+#! /bin/sh
+
+xrandr --output eDP1 --mode 1920x1200 --pos 0x120 --rotate normal --output HDMI1 --primary --mode 3440x1440 --pos 1920x0 --rotate normal
+~/scripts/pywal.sh
+
+setxkbmap -layout us,uac -variant ,colemak_reverse -option grp:lwin_toggle &
+pgrep -x sxhkd > /dev/null || sxhkd &
+picom &
+kbdd &
+udiskie &
+~/.config/polybar/launch.sh &
+systemctl --user start dunst &
+~/.config/bspwm/cleanfullscreen &
+slack &
+telegram-desktop &
+
+bspc wm -O HDMI1 eDP1
+bspc monitor HDMI1 -d 1 2 3 5 6 7 8 9 10
+bspc monitor eDP1 -d 4
+
+bspc config border_width         2
+bspc config window_gap          15
+bspc config presel_feedback false          15
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config pointer_modifier mod1
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_corner
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+
+bspc rule -a Brave-browser desktop='1' follow=on
+bspc rule -a Alacritty desktop='2' follow=on
+bspc rule -a Chromium desktop='3' follow=on
+bspc rule -a Slack desktop='4'
+bspc rule -a TelegramDesktop desktop='4'
+bspc rule -a jetbrains-idea desktop='5' follow=on
+bspc rule -a Spotify desktop='10' follow=on
+
+source "${HOME}/.cache/wal/colors.sh"
+
+bspc config normal_border_color  "$background77"
+bspc config active_border_color "$background77"
+bspc config focused_border_color  "$color4"
+
+bspc rule -a "*:*:Picture-in-Picture" \
+     state=floating sticky=on follow=off focus=on \
+     rectangle=864x486+4480+939
+bspc rule -a "*:*:Picture in Picture" \
+     state=floating sticky=on follow=off focus=on \
+     rectangle=864x486+4480+939
+bspc rule -a "*:*:Picture in picture" \
+     state=floating sticky=on follow=off focus=on \
+     rectangle=864x486+4480+939

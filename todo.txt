@@ -1,0 +1,2 @@
+1. Add GP gateway in $HOME/states file
+2. Define monitors in bspwm/.config/bspwm/bspwmrc
