@@ -103,7 +103,7 @@ alias ls="${aliases[ls]:-ls} -lhA"
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
-path=(~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin $path)
+path=(~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-linux64/bin $path)
 terminal=(/usr/bin/alacritty)
 
 (cat ~/.cache/wal/sequences &)
