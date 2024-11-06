@@ -7,7 +7,7 @@ sudo apt install --assume-yes curl \
     python3-pip rofi feh picom bspwm sxhkd lxsession flameshot i3lock kitty
     # alacritty \
 
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh $USER
 
 cd $HOME
 git clone --depth=1 -b custom https://github.com/skraim/rofi.git
@@ -57,6 +57,7 @@ sudo pip3 install --break-system-packages pywal
 # ksnip
 # flameshot
 # vpn 
+cd $HOME/dotfiles
 
 stow nvim
 stow zsh
@@ -84,4 +85,3 @@ stow betterlockscreen
 cp ./custom-states/states $HOME/
 mkdir -p $HOME/.config/dunst
 ln -s $HOME/.cache/wal/colors-dunst $HOME/.config/dunst/dunstrc
-echo "[push]\n    autoSetupRemote = true" | ~/.gitconfig
