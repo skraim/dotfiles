@@ -1,2 +1,12 @@
-1. Add GP gateway in $HOME/states file
-2. Define monitors in bspwm/.config/bspwm/bspwmrc
+5. kitty
+6. yazi
+
+
+
+
+
+bspwm/sxhkd:
+move floating window to the edges
+navigate (w,s,n,e) between the monitors from fullscreen window on one of them
+make display settings more dynamic (polybar, bspwm)
+do not steal focus for "PiP"

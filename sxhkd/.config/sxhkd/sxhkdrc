@@ -4,6 +4,9 @@
 
 # run terminal
 super + Return
+	kitty
+
+super + shift + Return
 	alacritty
 
 # app launcher
