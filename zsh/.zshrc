@@ -57,5 +57,5 @@ path=(~/.local/bin ~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-lin
 terminal=(/usr/bin/alacritty) # change for kitty 
 
 (cat ~/.cache/wal/sequences &)
-fastfetch
+# fastfetch
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

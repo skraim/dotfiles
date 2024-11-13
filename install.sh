@@ -1,10 +1,11 @@
 sudo apt install --assume-yes curl \
     autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev \
     libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev \
-    libxcb-util0-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev vim fastfetch \
+    libxcb-util0-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev vim \
     imagemagick cava autoconf gcc libev-dev make cmake zsh zplug stow polybar chromium ripgrep \
     fzf tmux tmuxp freecad btop calc docker-compose openjdk-17-jdk nodejs npm qbittorrent \
     python3-pip rofi feh picom bspwm sxhkd lxsession flameshot dunst pipx alacritty
+# fastfetch \
 
 mkdir -p ~/tmp
 
