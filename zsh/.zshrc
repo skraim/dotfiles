@@ -36,11 +36,11 @@ bindkey ';6D' beginning-of-line
 bindkey ';6C' end-of-line
 
 # HISTORY SEARCH
-bindkey '^[[A' history-substring-search-up
+bindkey '^[[A' beginning-of-line
+bindkey '^f' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # ALIASES
-alias tree='tree -a -I .git'
 alias ls="${aliases[ls]:-ls} -lhA --color=auto"
 alias :q="exit"
 

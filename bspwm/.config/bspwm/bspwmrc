@@ -1,12 +1,11 @@
 #! /bin/sh
 
 xrandr --output eDP1 --mode 1920x1200 --pos 0x120 --rotate normal --output HDMI1 --primary --mode 3440x1440 --pos 1920x0 --rotate normal
-~/scripts/pywal.sh
 
-setxkbmap -layout us,uac -variant ,colemak_reverse -option grp:lwin_toggle &
-# setxkbmap -layout us,uk-rev -variant ,uk-rev-colemak -option grp:lwin_toggle &
+# setxkbmap -layout us,uac -variant ,colemak_reverse -option grp:lwin_toggle &
+setxkbmap -layout us,uk-rev -variant ,uk-rev-colemak -option grp:lwin_toggle &
 pgrep -x sxhkd > /dev/null || sxhkd &
-picom &
+picom --experimental-backends &
 kbdd &
 udiskie &
 ~/.config/polybar/launch.sh &
@@ -15,9 +14,9 @@ systemctl --user start dunst &
 slack &
 telegram-desktop &
 
-bspc wm -O HDMI1 eDP1
-bspc monitor HDMI1 -d 1 2 3 5 6 7 8 9 10
-bspc monitor eDP1 -d 4
+bspc wm -O HDMI-1 eDP-1
+bspc monitor HDMI-1 -d 1 2 3 5 6 7 8 9 10
+bspc monitor eDP-1 -d 4
 
 bspc config border_width         2
 bspc config window_gap          15
@@ -42,6 +41,7 @@ bspc rule -a TelegramDesktop desktop='4'
 bspc rule -a jetbrains-idea desktop='5' follow=on
 bspc rule -a Spotify desktop='10' follow=on
 
+/home/artem/scripts/pywal.sh
 source "${HOME}/.cache/wal/colors.sh"
 
 bspc config normal_border_color  "$background77"
