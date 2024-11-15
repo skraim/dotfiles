@@ -31,14 +31,15 @@ bindkey '^e' edit-command-line
 bindkey '^H' backward-kill-word
 bindkey '5~' kill-word
 bindkey ';5D' backward-word
+bindkey '^[[1;5D' backward-word
 bindkey ';5C' forward-word
-bindkey ';6D' beginning-of-line
-bindkey ';6C' end-of-line
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5A' beginning-of-line
+bindkey '^[[1;5B' end-of-line
 
 # HISTORY SEARCH
-bindkey '^[[A' beginning-of-line
-bindkey '^f' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
 
 # ALIASES
 alias ls="${aliases[ls]:-ls} -lhA --color=auto"
@@ -54,8 +55,10 @@ setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 
 path=(~/.local/bin ~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-linux64/bin $path)
-terminal=(/usr/bin/alacritty) # change for kitty 
+terminal=(~/.local/bin/kitty)
 
-(cat ~/.cache/wal/sequences &)
-# fastfetch
+export PATH
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+(cat ~/.cache/wal/sequences &)
+fastfetch

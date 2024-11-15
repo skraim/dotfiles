@@ -1,0 +1,5 @@
+background = 88{background.strip}
+foreground = {color3.strip}
+primary = {color6.strip}
+contrast = {color0.strip}
+secondary = {color7.strip}

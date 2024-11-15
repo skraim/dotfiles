@@ -1,12 +1,24 @@
+#!/bin/bash
+
 DOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+# prepare librewolf
+sudo apt install extrepo -y
+sudo extrepo enable librewolf
+
+# prepare spotify
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo apt update
 sudo apt install --assume-yes curl autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
     libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev \
     libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev \
     libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev vim imagemagick cava autoconf gcc libev-dev \
     make cmake zsh stow polybar chromium ripgrep fzf tmux tmuxp freecad btop calc docker-compose \
     openjdk-17-jdk nodejs npm qbittorrent python3-pip rofi feh picom bspwm sxhkd lxsession \
-    flameshot dunst pipx alacritty bluez-tools
+    flameshot dunst pipx alacritty bluez-tools libdbus-glib-1-dev librewolf spotify-client snapd \
+    lxappearance qt5ct
 
 mkdir -p $HOME/tmp
 
@@ -24,13 +36,21 @@ ln -s $HOME/.local/kitty.app/bin/kitten $HOME/.local/bin/kitten
 cp $HOME/.local/kitty.app/share/applications/kitty.desktop $HOME/.local/share/applications/
 sed -i "s|Icon=kitty|Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" $HOME/.local/share/applications/kitty.desktop
 sed -i "s|Exec=kitty|Exec=$HOME/.local/bin/kitty|g" $HOME/.local/share/applications/kitty.desktop
-sed -i "s|TryExec=kitty|TryExec=$HOME/.local/bin/kitty|g" $HOME/.local/share/applications/kitty.desktop
 
 # zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/zsh-syntax-highlighting
 git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $HOME/.zsh/zsh-auto-notify
 git clone https://github.com/zsh-users/zsh-history-substring-search.git $HOME/.zsh/zsh-history-substring-search
+
+# fastfetch
+cd $HOME
+git clone https://github.com/fastfetch-cli/fastfetch.git
+mkdir -p build
+cd build
+cmake ..
+cmake --build . --target fastfetch --target flashfetch
+ln -s $HOME/fastfetch/build/fastfetch $HOME/.local/bin/fastfetch
 
 # ua keyboard layouts
 sudo $DOT_DIR/kb-layout/install.sh
@@ -48,7 +68,7 @@ cd kbdd
 aclocal; automake --add-missing; autoreconf
 ./configure options
 make
-make install
+sudo make install
 
 # brave
 # sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -57,14 +77,10 @@ make install
 # sudo apt install brave-browser
 
 # nvim
+cd $HOME
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
-
-# spotify
-curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
 
 # qmk
 python3 -m pip install --break-system-packages --user qmk
@@ -113,8 +129,15 @@ cp $DOT_DIR/wallpapers/1216465.jpg $HOME/Pictures/wallpapers/
 betterlockscreen -u $HOME/Pictures/wallpapers/1216465.jpg
 
 cd $HOME/tmp
+mkdir -p ~/.local/share/icons
+curl -LO https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
+tar -xvf Bibata-Modern-Classic.tar.xz
+cp -r Bibata-Modern-Classic ~/.local/share/icons/
+sudo mv Bibata-Modern-Classic /usr/share/icons/
 curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
 unzip -d $HOME/.fonts/ Meslo
 
-rm -f $HOME/tmp
+echo "export PATH=~/.local/bin:~/scripts:/usr/mvn/apache-maven-3.9.6/bin:~/bin:/opt/nvim-linux64/bin:$PATH" >> $HOME/.bashrc
+
+rm -r $HOME/tmp
 

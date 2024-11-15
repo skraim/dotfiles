@@ -1,5 +1,5 @@
-session_name: session
-start_directory: ~/dir/
+session_name: dot
+start_directory: ~/dotfiles/
 windows:
   - window_name: Build
     panes:
