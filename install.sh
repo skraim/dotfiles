@@ -26,7 +26,7 @@ sudo apt install --assume-yes autoconf gcc make pkg-config libpam0g-dev libcairo
     make cmake zsh stow polybar chromium ripgrep fzf tmux tmuxp freecad btop calc docker-compose \
     openjdk-17-jdk nodejs npm qbittorrent python3-pip rofi feh picom bspwm sxhkd lxsession \
     flameshot dunst pipx alacritty bluez-tools libdbus-glib-1-dev librewolf spotify-client snapd \
-    lxappearance qt5ct
+    lxappearance qt5ct udiskie
 
 mkdir -p $HOME/tmp
 mkdir -p $HOME/.local/bin
@@ -139,9 +139,15 @@ sudo mv Bibata-Modern-Classic /usr/share/icons/
 curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
 unzip -d $HOME/.fonts/ Meslo
 
-echo "export PATH=~/.local/bin:~/scripts:/usr/mvn/apache-maven-3.9.6/bin:~/bin:/opt/nvim-linux64/bin:$PATH" >> $HOME/.bashrc
+cd $HOME
+mkdir -p ~/icons/default
+cd ~/.icons/default
+echo "[icon theme]\nInherits=Bibata-Modern-Classic" >> index.theme
+ln -s /usr/share/icons/Bibata-Modern-Classic/cursors ~/.icons/default/cursors
+
+sed -i "1i export PATH=\"\$HOME/.local/bin:\$HOME/scripts:/usr/mvn/apache-maven-3.9.6/bin:\$HOME/bin:/opt/nvim-linux64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:\$PATH\"" $HOME/.bashrc
 
 rm -r $HOME/tmp
 
-source $HOME/.bashrc
+. "${HOME}/.bashrc
 betterlockscreen -u $HOME/Pictures/wallpapers/1216465.jpg

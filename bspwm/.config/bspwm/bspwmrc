@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-. ~/.bashrc
+. "${HOME}/.bashrc"
 xrandr --output eDP-1 --mode 1920x1200 --pos 0x120 --rotate normal --output HDMI-1 --primary --mode 3440x1440 --pos 1920x0 --rotate normal
 ~/scripts/pywal.sh
 
@@ -11,7 +11,7 @@ picom --experimental-backends &
 kbdd &
 udiskie &
 ~/.config/polybar/launch.sh &
-systemctl --user start dunst &
+systemctl --user restart dunst &
 ~/.config/bspwm/cleanfullscreen &
 telegram-desktop &
 
