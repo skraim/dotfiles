@@ -2,6 +2,14 @@
 
 DOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+# zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/zsh-syntax-highlighting
+git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $HOME/.zsh/zsh-auto-notify
+git clone https://github.com/zsh-users/zsh-history-substring-search.git $HOME/.zsh/zsh-history-substring-search
+
+sudo apt install --assume-yes curl 
+
 # prepare librewolf
 sudo apt install extrepo -y
 sudo extrepo enable librewolf
@@ -11,7 +19,7 @@ curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 sudo apt update
-sudo apt install --assume-yes curl autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
+sudo apt install --assume-yes autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
     libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev \
     libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev \
     libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev vim imagemagick cava autoconf gcc libev-dev \
@@ -21,6 +29,7 @@ sudo apt install --assume-yes curl autoconf gcc make pkg-config libpam0g-dev lib
     lxappearance qt5ct
 
 mkdir -p $HOME/tmp
+mkdir -p $HOME/.local/bin
 
 # change shell to zsh
 sudo chsh -s /bin/zsh $USER
@@ -37,15 +46,10 @@ cp $HOME/.local/kitty.app/share/applications/kitty.desktop $HOME/.local/share/ap
 sed -i "s|Icon=kitty|Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" $HOME/.local/share/applications/kitty.desktop
 sed -i "s|Exec=kitty|Exec=$HOME/.local/bin/kitty|g" $HOME/.local/share/applications/kitty.desktop
 
-# zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/zsh-syntax-highlighting
-git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $HOME/.zsh/zsh-auto-notify
-git clone https://github.com/zsh-users/zsh-history-substring-search.git $HOME/.zsh/zsh-history-substring-search
-
 # fastfetch
 cd $HOME
 git clone https://github.com/fastfetch-cli/fastfetch.git
+cd fastfetch
 mkdir -p build
 cd build
 cmake ..
@@ -126,8 +130,6 @@ ln -s $HOME/.cache/wal/colors-dunst $HOME/.config/dunst/dunstrc
 mkdir -p $HOME/Pictures/wallpapers/
 cp $DOT_DIR/wallpapers/1216465.jpg $HOME/Pictures/wallpapers/
 
-betterlockscreen -u $HOME/Pictures/wallpapers/1216465.jpg
-
 cd $HOME/tmp
 mkdir -p ~/.local/share/icons
 curl -LO https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
@@ -141,3 +143,5 @@ echo "export PATH=~/.local/bin:~/scripts:/usr/mvn/apache-maven-3.9.6/bin:~/bin:/
 
 rm -r $HOME/tmp
 
+source $HOME/.bashrc
+betterlockscreen -u $HOME/Pictures/wallpapers/1216465.jpg
