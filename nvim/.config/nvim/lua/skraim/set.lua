@@ -15,7 +15,7 @@ vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -26,6 +26,16 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "100"
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 vim.g.mapleader = " "
+
+vim.api.nvim_create_autocmd("FileType", { 
+    pattern = { "lua", "javascript", "typescript", "javascriptreact", "typescriptreact", "java", "hyprlang" }, 
+    callback = function() 
+        vim.opt_local.spell = true 
+        vim.opt_local.spelllang = "en_us" 
+        vim.opt_local.spelloptions = "camel" 
+        vim.opt_local.spellcapcheck = ""
+    end, 
+})

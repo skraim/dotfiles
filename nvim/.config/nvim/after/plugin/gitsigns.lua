@@ -5,7 +5,6 @@ require('gitsigns').setup({
             vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
         end
 
-        -- Actions
         map('n', '<leader>hs', ':Gitsigns stage_hunk<CR>')
         map('v', '<leader>hs', ':Gitsigns stage_hunk<CR>')
         map('n', '<leader>hr', ':Gitsigns reset_hunk<CR>')

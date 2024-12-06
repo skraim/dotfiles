@@ -9,18 +9,19 @@ require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
-        "tsserver",
+        "ts_ls",
         "cssmodules_ls",
         "eslint",
         "html",
         "jsonls",
         "java_language_server",
-        "lemminx"
+        "lemminx",
+        "hyprls"
     },
     handlers = {
         function(server_name)
-            if server_name == "tsserver" then
-                require('lspconfig').tsserver.setup({
+            if server_name == "ts_ls" then
+                require('lspconfig').ts_ls.setup({
                     capabilities = capabilities,
                     init_options = {
                         enableProfileLoading = false,
@@ -72,7 +73,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { buffer = ev.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'H', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -105,7 +106,6 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 local entry = cmp.get_selected_entry()
@@ -121,6 +121,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
+        { name = "codeium" }
     }, {
         { name = 'buffer' },
     })

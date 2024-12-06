@@ -1,7 +1,7 @@
 [
     {
         "height": 32,
-        "spacing": 5,
+        "spacing": 7,
         "reload_style_on_change": true,
         "output": [
             "HDMI-A-1"
@@ -38,15 +38,9 @@
         "group/hardware": {
             "orientation": "horizontal",
             "modules": [
-                "group/main",
-                "battery"
-            ]
-        },
-        "group/main": {
-            "orientation": "horizontal",
-            "modules": [
                 "cpu",
-                "memory"
+                "memory",
+                "battery"
             ]
         },
         "hyprland/workspaces": {
@@ -76,27 +70,18 @@
             "format": "󰺟 {}",
             "on-click": "hyprctl dispatch submap reset"
         },
-        "keyboard-state": {
-            "capslock": true,
-            "format": "{icon}",
-            "format-icons": {
-                "locked": "󰘲 ",
-                "unlocked": "_ "
-            },
-            "device-path": "/dev/input/by-id/usb-ZSA_Technology_Labs_Voyager-event-kbd"
-        },
         "clock": {
-            "format": "{:%H:%M}  ",
+            "format": "{:%H:%M} ",
             "tooltip-format": "<span size='14pt' font='MesloLGL Nerd Font'><tt><small>{calendar}</small></tt></span>",
-            "format-alt": "{:%d.%m.%Y}  ",
+            "format-alt": "{:%d.%m.%Y} ",
             "calendar": {
                 "mode": "month",
                 "mode-mon-col": 3,
                 "format": {
-                    "months": "<span color='#fcff3d'><b>{}</b></span>",
-                    "days": "<span color='#26A65B'><b>{}</b></span>",
-                    "weekdays": "<span color='#be9cc7'><b>{}</b></span>",
-                    "today": "<span color='#dd532e'><b><u>{}</u></b></span>"
+                    "months": "<span color='#675c2d'><b>{}</b></span>",
+                    "days": "<span color='#a39354'><b>{}</b></span>",
+                    "weekdays": "<span color='#423747'><b>{}</b></span>",
+                    "today": "<span color='#c1c4c6'><b><u>{}</u></b></span>"
                 }
             },
             "actions": {
@@ -108,30 +93,27 @@
         "cpu": {
             "format": "{icon}",
             "format-icons": [
-                "<span color='#69ff94'>▁</span>",
-                "<span color='#2aa9ff'>▂</span>",
-                "<span color='#f8f8f2'>▃</span>",
-                "<span color='#f8f8f2'>▄</span>",
-                "<span color='#ffffa5'>▅</span>",
-                "<span color='#ffffa5'>▆</span>",
-                "<span color='#ff9977'>▇</span>",
-                "<span color='#dd532e'>█</span>"
-            ],
-            "on-click": "nohup alacritty -e btop &"
-        },
+                "▁",
+                "▂",
+                "▃",
+                "▄",
+                "▅",
+                "▆",
+                "▇",
+                "<span color='#f55'>█</span>"
+            ]        },
         "memory": {
             "format": "{icon}",
             "format-icons": [
-                "<span color='#69ff94'>▁</span>",
-                "<span color='#2aa9ff'>▂</span>",
-                "<span color='#f8f8f2'>▃</span>",
-                "<span color='#f8f8f2'>▄</span>",
-                "<span color='#ffffa5'>▅</span>",
-                "<span color='#ffffa5'>▆</span>",
-                "<span color='#ff9977'>▇</span>",
-                "<span color='#dd532e'>█</span>"
-            ],
-            "on-click": "nohup alacritty -e btop &"
+                "▁",
+                "▂",
+                "▃",
+                "▄",
+                "▅",
+                "▆",
+                "▇",
+                "<span color='#f55'>█</span>"
+            ]
         },
         "battery": {
             "states": {
@@ -157,7 +139,6 @@
                 "󰂂",
                 "󰁹"
             ],
-            "on-click": "nohup alacritty -e btop &",
             "tooltip-format": "{capacity}% {timeTo}"
         },
         "network": {
@@ -171,20 +152,19 @@
                 "󰤢",
                 "󰤥",
                 "󰤨"
-            ],
-            "on-click": "nohup alacritty -e btop &"
+            ]
         },
         "pulseaudio": {
             "format": "{icon} {format_source}",
-            "format-bluetooth": "{icon}  {format_source}",
-            "format-bluetooth-muted": "󰝟  {format_source}",
+            "format-bluetooth": "{icon} {format_source}",
+            "format-bluetooth-muted": "󰝟 {format_source}",
             "format-muted": "󰝟 {format_source}",
             "format-source": "󰍬",
             "format-source-muted": "󰍭",
             "format-icons": {
-                "headphone": " ",
-                "hands-free": " ",
-                "headset": " ",
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
                 "phone": "",
                 "portable": "",
                 "car": "",
@@ -195,8 +175,6 @@
                 ]
             },
             "tooltip-format": "{volume}% {desc}",
-            "on-click": "pavucontrol",
-            "on-click-right": "nohup alacritty -e bluetuith",
             "reverse-scrolling": true,
             "scroll-step": 5.0
         },
@@ -224,9 +202,9 @@
         },
         "custom/pacman": {
             "tooltip": false,
-            "format": "{}  ",
+            "format": "{} ",
             "return-type": "json",
-            "interval": 3600,
+            "interval": 300,
             "exec": "~/scripts/package-updates.sh",
             "signal": 1
         }
@@ -267,15 +245,9 @@
         "group/hardware": {
             "orientation": "horizontal",
             "modules": [
-                "group/main",
-                "battery"
-            ]
-        },
-        "group/main": {
-            "orientation": "horizontal",
-            "modules": [
                 "cpu",
-                "memory"
+                "memory",
+                "battery"
             ]
         },
         "hyprland/workspaces": {
@@ -305,27 +277,18 @@
             "format": "󰺟 {}",
             "on-click": "hyprctl dispatch submap reset"
         },
-        "keyboard-state": {
-            "capslock": true,
-            "format": "{icon}",
-            "format-icons": {
-                "locked": "󰘲 ",
-                "unlocked": "_ "
-            },
-            "device-path": "/dev/input/event3"
-        },
         "clock": {
-            "format": "{:%H:%M}  ",
+            "format": "{:%H:%M} ",
             "tooltip-format": "<span size='14pt' font='MesloLGL Nerd Font'><tt><small>{calendar}</small></tt></span>",
-            "format-alt": "{:%d.%m.%Y}  ",
+            "format-alt": "{:%d.%m.%Y} ",
             "calendar": {
                 "mode": "month",
                 "mode-mon-col": 3,
                 "format": {
-                    "months": "<span color='#fcff3d'><b>{}</b></span>",
-                    "days": "<span color='#26A65B'><b>{}</b></span>",
-                    "weekdays": "<span color='#be9cc7'><b>{}</b></span>",
-                    "today": "<span color='#dd532e'><b><u>{}</u></b></span>"
+                    "months": "<span color='#675c2d'><b>{}</b></span>",
+                    "days": "<span color='#a39354'><b>{}</b></span>",
+                    "weekdays": "<span color='#423747'><b>{}</b></span>",
+                    "today": "<span color='#c1c4c6'><b><u>{}</u></b></span>"
                 }
             },
             "actions": {
@@ -337,30 +300,28 @@
         "cpu": {
             "format": "{icon}",
             "format-icons": [
-                "<span color='#69ff94'>▁</span>",
-                "<span color='#2aa9ff'>▂</span>",
-                "<span color='#f8f8f2'>▃</span>",
-                "<span color='#f8f8f2'>▄</span>",
-                "<span color='#ffffa5'>▅</span>",
-                "<span color='#ffffa5'>▆</span>",
-                "<span color='#ff9977'>▇</span>",
-                "<span color='#dd532e'>█</span>"
-            ],
-            "on-click": "nohup alacritty -e btop &"
+                "▁",
+                "▂",
+                "▃",
+                "▄",
+                "▅",
+                "▆",
+                "▇",
+                "<span color='#f55'>█</span>"
+            ]
         },
         "memory": {
             "format": "{icon}",
             "format-icons": [
-                "<span color='#69ff94'>▁</span>",
-                "<span color='#2aa9ff'>▂</span>",
-                "<span color='#f8f8f2'>▃</span>",
-                "<span color='#f8f8f2'>▄</span>",
-                "<span color='#ffffa5'>▅</span>",
-                "<span color='#ffffa5'>▆</span>",
-                "<span color='#ff9977'>▇</span>",
-                "<span color='#dd532e'>█</span>"
-            ],
-            "on-click": "nohup alacritty -e btop &"
+                "▁",
+                "▂",
+                "▃",
+                "▄",
+                "▅",
+                "▆",
+                "▇",
+                "<span color='#f55'>█</span>"
+            ]
         },
         "battery": {
             "states": {
@@ -386,7 +347,6 @@
                 "󰂂",
                 "󰁹"
             ],
-            "on-click": "nohup alacritty -e btop &",
             "tooltip-format": "{capacity}% {timeTo}"
         },
         "network": {
@@ -400,20 +360,19 @@
                 "󰤢",
                 "󰤥",
                 "󰤨"
-            ],
-            "on-click": "nohup alacritty -e btop &"
+            ]
         },
         "pulseaudio": {
             "format": "{icon} {format_source}",
-            "format-bluetooth": "{icon}  {format_source}",
-            "format-bluetooth-muted": "󰝟  {format_source}",
+            "format-bluetooth": "{icon} {format_source}",
+            "format-bluetooth-muted": "󰝟 {format_source}",
             "format-muted": "󰝟 {format_source}",
             "format-source": "󰍬",
             "format-source-muted": "󰍭",
             "format-icons": {
-                "headphone": " ",
-                "hands-free": " ",
-                "headset": " ",
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
                 "phone": "",
                 "portable": "",
                 "car": "",
@@ -424,8 +383,6 @@
                 ]
             },
             "tooltip-format": "{volume}% {desc}",
-            "on-click": "pavucontrol",
-            "on-click-right": "nohup alacritty -e bluetuith",
             "reverse-scrolling": true,
             "scroll-step": 5.0
         },
@@ -453,7 +410,7 @@
         },
         "custom/pacman": {
             "tooltip": false,
-            "format": "{}  ",
+            "format": "{} ",
             "return-type": "json",
             "interval": 3600,
             "exec": "~/scripts/package-updates.sh",

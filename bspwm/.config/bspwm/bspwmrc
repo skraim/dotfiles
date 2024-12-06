@@ -4,8 +4,7 @@
 xrandr --output eDP-1 --mode 1920x1200 --pos 0x120 --rotate normal --output HDMI-1 --primary --mode 3440x1440 --pos 1920x0 --rotate normal
 ~/scripts/pywal.sh
 
-# setxkbmap -layout us,uac -variant ,colemak_reverse -option grp:lwin_toggle &
-setxkbmap -layout us,uk-rev -variant ,uk-rev-colemak -option grp:lwin_toggle &
+setxkbmap -layout us,ua -variant ,uk-rev-colemak -option grp:lwin_toggle &
 pgrep -x sxhkd > /dev/null || sxhkd &
 picom --experimental-backends &
 kbdd &

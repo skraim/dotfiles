@@ -4,30 +4,24 @@ DAC=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == "tshort-dactyl-
 ZSA=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == "zsa-technology-labs-voyager") | .active_keymap')
 INT=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == "at-translated-set-2-keyboard") | .active_keymap')
 BKB=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == "bastard-keyboards-skeletyl-splinky") | .active_keymap')
-if [ -n "$DAC" ]; then
-    CURRENT="$DAC"
-else
-    if [ -n "$ZSA" ]; then
-        CURRENT="$ZSA"
-    else
-        if [ -n "$BKB" ]; then
-            CURRENT="$BKB"
-        else
-            CURRENT="$INT"
-        fi
-    fi
-fi
+CORNE=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == "corne-keyboard") | .active_keymap')
+
+CURRENT="${CORNE:-${ZSA:-${BKB:-${DAC:-$INT}}}}"
+
 case $CURRENT in
     "Ukrainian")
-        echo "🇺🇦(qwerty)"
+        echo "🇺🇦Q"
         ;;
-    "Ukrainian (colemak reverse)")
+    "Ukrainian (Colemak reverse)")
+        echo "🇺🇦C"
+        ;;
+    "Ukrainian (Graphite reverse)")
         echo "🇺🇦"
         ;;
     "English (US)")
         echo "🇺🇸"
         ;;
     *)
-        echo "🚩"
+        echo "$CURRENT"
         ;;
 esac

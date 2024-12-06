@@ -21,22 +21,6 @@ super + shift + @space
 super + shift + q
     $HOME/.config/rofi/scripts/powermenu_t2
 
-# # suspend session
-# super + shift + q ; u
-#     systemctl suspend
-
-# # poweroff
-# super + shift + q ; super + shift + s
-#     systemctl poweroff
-
-# # reboot
-# super + shift + q ; super + shift + r
-#     systemctl reboot
-
-# # lock session
-# super + shift + x
-#     i3lock
-
 # close app
 super + shift + c
 	bspc node -c

@@ -1,27 +1,12 @@
-<layout>
-    <configItem>
-        <name>uk-rev</name>
-        <shortDescription>Ukrainian (Reverse)</shortDescription>
-        <description>Ukrainian (Reverse)</description>
-        <languageList>
-            <iso639Id>ukr</iso639Id>
-        </languageList>
-        <countryList>
-            <iso3166Id>UA</iso3166Id>
-        </countryList>
-    </configItem>
-    <variantList>
         <variant>
             <configItem>
-                <name>uk-rev-colemak</name>
+                <name>colemak-rev</name>
                 <description>Ukrainian (Colemak reverse)</description>
             </configItem>
         </variant>
         <variant>
             <configItem>
-                <name>uk-rev-graphite</name>
+                <name>graphite-rev</name>
                 <description>Ukrainian (Graphite reverse)</description>
             </configItem>
         </variant>
-    </variantList>
-</layout>

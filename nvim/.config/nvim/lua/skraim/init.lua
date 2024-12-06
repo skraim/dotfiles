@@ -15,7 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-
     -- LSP and autocomplition --
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -34,59 +33,57 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" }
     },
-
-    -- multicursor --
-    "mg979/vim-visual-multi",
-
-    -- comments --
-    "tpope/vim-commentary",
     {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        "Exafunction/codeium.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({
+            })
+        end
     },
+
 
     -- git --
     "lewis6991/gitsigns.nvim",
     "tpope/vim-fugitive",
 
-    -- debug --
-    "mfussenegger/nvim-dap",
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = {
-            "mfussenegger/nvim-dap",
-            "nvim-neotest/nvim-nio"
-        }
-    },
+    --     -- debug --
+    --     "mfussenegger/nvim-dap",
+    --     {
+    --         "rcarriga/nvim-dap-ui",
+    --         dependencies = {
+    --             "mfussenegger/nvim-dap",
+    --             "nvim-neotest/nvim-nio"
+    --         }
+    --     },
 
-    -- selfexplane --
+    -- misc --
+    "nvim-tree/nvim-web-devicons",
     "mbbill/undotree",
-    "preservim/tagbar",
-    "NvChad/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     "nvim-tree/nvim-tree.lua",
+    "echasnovski/mini.ai",
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
-    {
-        "folke/which-key.nvim",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
     },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" }
     },
     {
-        "rose-pine/neovim",
-        name = "rose-pine"
+        "bluz71/vim-nightfly-colors",
+        name = "nightfly",
+        lazy = false,
+        priority = 1000
     },
     {
-        "nvim-telescope/telescope.nvim",
-        -- tag = "0.1.6",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
         "ThePrimeagen/harpoon",
@@ -97,17 +94,15 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate"
     },
-    {
-        "nvim-neotest/neotest",
-        dependencies = {
-            "nvim-neotest/nvim-nio",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-neotest/neotest-jest"
-        }
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-context"
-    }
+    "nvim-treesitter/nvim-treesitter-context",
+    --     {
+    --         "nvim-neotest/neotest",
+    --         dependencies = {
+    --             "nvim-neotest/nvim-nio",
+    --             "nvim-lua/plenary.nvim",
+    --             "antoinemadec/FixCursorHold.nvim",
+    --             "nvim-treesitter/nvim-treesitter",
+    --             "nvim-neotest/neotest-jest"
+    --         }
+    --     }
 })

@@ -6,29 +6,34 @@
 }
 
 window {
-	background-color: rgba(12, 12, 12, 0.7);
+	background-color: @background;
+    opacity: 0.8;
 }
 
 button {
-    border-radius: 10px;
-    margin: 5px;
-    padding: 5px;
-    border-color: @color6;
-	text-decoration-color: #FFFFFF;
-    color: #FFFFFF;
-	background-color: #1E1E1E;
-	border-style: solid;
-	border-width: 5px;
+    outline: none;
+    text-shadow: none;
+    font-weight: 700;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 15px;
+    background-color: @color6;
+    font-size: 45px;
+    font-family: Mantinia;
+    color: #000000;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 55%;
-        opacity: 0.7;
+	background-size: 45%;
+    border-color: @color3;
+	border-style: solid;
+	border-width: 3px;
+    opacity: 0.8;
 }
 
 button:focus, button:active, button:hover {
-	background-color: @color6;
-	outline-style: solid;
-        opacity: 1;
+    border-color: @color3;
+    background-color: @color3;
+    opacity: 1;
 }
 
 #lock {

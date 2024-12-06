@@ -6,7 +6,7 @@
 
 window#waybar {
     background-color: rgba(0, 0, 0, .7);
-    color: @color10;
+    color: @color3;
     transition-property: any;
     transition-duration: .5s;
     border-bottom: none;
@@ -20,6 +20,8 @@ button {
 
 button:hover {
     background: inherit;
+    outline: none;
+    box-shadow: none;
 }
 
 #workspaces {
@@ -42,6 +44,8 @@ button:hover {
 #workspaces button:hover {
     background-color: @color2;
     color: @color3;
+    text-shadow: none;
+    border: transparent solid 1px;
 }
 
 #workspaces button.active {
@@ -57,6 +61,8 @@ button:hover {
     background-color: @color6;
     border: none;
     outline: none;
+    text-shadow: none;
+    border: transparent solid 1px;
 }
 
 #workspaces button.urgent {
@@ -93,11 +99,12 @@ button:hover {
 }
 
 #custom-kb-layout {
+    font-family: "Noto Color Emoji";
     font-size: 18px;
 }
 
 #custom-arch {
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
     font-size: 20px;
     color: #1793d1;
@@ -111,40 +118,14 @@ button:hover {
 
 #battery {
     background-color: transparent;
-    color: #fcff3d;
+    color: @color6;
     border-radius: 2px;
 }
 
-#battery.full {
-    color: #69ff94;
-}
-
 #battery.warning {
-    color: #ff9977;
+    color: #ff5555;
 }
 
-#battery.charging {
-    color: #69ff94;
-}
-
-#battery.plugged {
-    color: #fcff3d;
-}
-
-#battery.charging.full {
-    color: #69ff94;
-}
-
-#battery.plugged.full {
-    color: #69ff94;
-}
-
-@keyframes blink {
-    to {
-        background-color: #dd532e;
-        color: #fff;
-    }
-}
 
 #battery.critical:not(.charging) {
     background-color: transparent;
@@ -158,16 +139,18 @@ button:hover {
 
 #cpu {
     background-color: transparent;
+    color: @color6;
     border-radius: 2px;
 }
 
 #memory {
     background-color: transparent;
+    color: @color6;
     border-radius: 2px;
 }
 
 #network {
-    padding: 0 13px 0 9px;
+    padding: 0 9px;
     background-color: transparent;
     border-radius: 2px;
     color: @color6;
@@ -175,37 +158,24 @@ button:hover {
     transition-duration: .5s;
 }
 
-#network:hover {
-    background-color: @color2;
-    color: @color3;
-}
-
 #network.disconnected {
-    color: #dd532e;
+    color: #ff5555;
 }
 
 #hardware {
-    padding: 0 9px;
+    padding: 0 5px;
     border-radius: 2px;
     font-size: 20px;
 }
 
-#hardware:hover {
-    background-color: @color2;
-}
-
-#hardware * {
-    padding: 0 2px;
-}
-
 #custom-kb-layout {
-    padding: 0 9px;
+    padding: 0 5px;
     border-radius: 2px;
     font-size: 20px;
 }
 
 #pulseaudio {
-    padding: 0 9px;
+    padding: 0 5px;
     color: @color6;
     border-radius: 2px;
     font-size: 20px;
@@ -213,21 +183,8 @@ button:hover {
     transition-property: all;
 }
 
-#pulseaudio:hover {
-    background-color: @color2;
-    color: @color3;
-}
-
 #pulseaudio.muted {
     color: @color10;
-}
-
-#keyboard-state {
-    font-size: 19px;
-}
-
-#keyboard-state label.locked {
-    color: #69ff94;
 }
 
 #oth {
@@ -237,16 +194,16 @@ button:hover {
 #custom-pacman {
     font-size: 19px;
     color: @color6;
-    padding: 0 9px;
+    padding: 0 5px;
 }
 
 #custom-pacman.updated {
-    color: @color10;
+    color: @color3;
 }
 
 #custom-vpn, #custom-dunst {
     font-size: 19px;
-    padding: 0 13px 0 9px;
+    padding: 0 9px;
     min-width: 0px;
     border-radius: 2px;
     transition-duration: .5s;
@@ -257,17 +214,12 @@ button:hover {
     margin-right: 10px;
 }
 
-#custom-vpn:hover, #custom-dunst:hover {
-    background-color: @color2;
-    color: @color3;
-}
-
 #custom-vpn.connected {
-    color: #69ff94;
+    color: @color6;
 }
 
 #custom-dunst.disabled {
-    color: #dd532e;
+    color: #ff5555;
 }
 
 window.eDP-1#waybar #custom-kb-layout {
@@ -308,4 +260,11 @@ window.eDP-1#waybar #custom-kb-layout {
 
 window.eDP-1#waybar #keyboard-state {
     font-size: 16px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #dd532e;
+        color: #fff;
+    }
 }
