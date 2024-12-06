@@ -55,16 +55,16 @@ stow yazi
 stow handlr
 
 # bspwm
-# stow picom
-# stow bspwm
-# stow polybar
-# stow sxhkd
-# stow betterlockscreen
+stow picom
+stow bspwm
+stow polybar
+stow sxhkd
+stow betterlockscreen
 
 # hyprland
-stow waybar
-stow wlogout
-stow hypr
+# stow waybar
+# stow wlogout
+# stow hypr
 
 ya pack -a yazi-rs/plugins:smart-enter
 ya pack -a yazi-rs/plugins:full-border
