@@ -124,7 +124,7 @@
             "format": "{icon}",
             "format-full": "{icon}",
             "format-charging": "{icon}󱐋",
-            "format-plugged": "{icon}",
+            "format-plugged": "{icon} ",
             "interval": 30,
             "format-icons": [
                 "󰂎",
@@ -332,7 +332,7 @@
             "format": "{icon}",
             "format-full": "{icon}",
             "format-charging": "{icon}󱐋",
-            "format-plugged": "{icon}",
+            "format-plugged": "{icon} ",
             "interval": 30,
             "format-icons": [
                 "󰂎",
