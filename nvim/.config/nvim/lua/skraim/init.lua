@@ -15,36 +15,54 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    'tpope/vim-sleuth',
+
     -- LSP and autocomplition --
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
+    -- "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
-    "saadparwaiz1/cmp_luasnip",
     {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        build = "make install_jsregexp"
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            { 'williamboman/mason.nvim', config = true },
+            'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+            { 'j-hui/fidget.nvim', opts = {} },
+            'hrsh7th/cmp-nvim-lsp',
+        },
     },
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     {
-        "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CmdlineEnter" }
+        'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
+        dependencies = {
+            {
+                'L3MON4D3/LuaSnip',
+                build = (function()
+                    if vim.fn.executable 'make' == 0 then
+                        return
+                    end
+                    return 'make install_jsregexp'
+                end)(),
+                dependencies = {
+                    {
+                        'rafamadriz/friendly-snippets',
+                        config = function()
+                            require('luasnip.loaders.from_vscode').lazy_load()
+                        end,
+                    },
+                },
+            },
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+        }
     },
     {
         "Exafunction/codeium.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
-        },
-        config = function()
-            require("codeium").setup({
-            })
-        end
+        }
     },
-
 
     -- git --
     "lewis6991/gitsigns.nvim",
@@ -63,7 +81,7 @@ require("lazy").setup({
     -- misc --
     "nvim-tree/nvim-web-devicons",
     "mbbill/undotree",
-    "brenoprata10/nvim-highlight-colors",
+    { "brenoprata10/nvim-highlight-colors", opts = {} },
     "nvim-tree/nvim-tree.lua",
     "echasnovski/mini.ai",
     {
@@ -83,7 +101,10 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-ui-select.nvim',
+        }
     },
     {
         "ThePrimeagen/harpoon",
@@ -95,14 +116,26 @@ require("lazy").setup({
         build = ":TSUpdate"
     },
     "nvim-treesitter/nvim-treesitter-context",
-    --     {
-    --         "nvim-neotest/neotest",
-    --         dependencies = {
-    --             "nvim-neotest/nvim-nio",
-    --             "nvim-lua/plenary.nvim",
-    --             "antoinemadec/FixCursorHold.nvim",
-    --             "nvim-treesitter/nvim-treesitter",
-    --             "nvim-neotest/neotest-jest"
-    --         }
-    --     }
+    "mfussenegger/nvim-jdtls",
+    {
+        "rcasia/neotest-java",
+        ft = "java",
+        dependencies = {
+            "mfussenegger/nvim-jdtls",
+            "mfussenegger/nvim-dap",           -- for the debugger
+            "rcarriga/nvim-dap-ui",            -- recommended
+            "theHamsta/nvim-dap-virtual-text", -- recommended
+        },
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-neotest/neotest-jest",
+            "rcasia/neotest-java"
+        }
+    }
 })

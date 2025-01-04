@@ -15,7 +15,7 @@ cd paru
 makepkg -si
 
 paru -S python-pywal16 librewolf-bin spotify python-pip bluetui hyprland-per-window-layout \
-    hyprshot hyprsunset sddm-sugar-dark 
+    hyprshot hyprsunset sddm-sugar-dark hyprland-qtutils
 
 sudo systemctl enable sddm
 

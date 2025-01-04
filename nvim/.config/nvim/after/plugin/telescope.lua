@@ -21,12 +21,39 @@ telescope.setup {
             "--smart-case",
             "--hidden",
         }
-    }
+    },
+    extensions = {
+        ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+        },
+    },
 }
 
-vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
-vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-vim.keymap.set("n", "<leader>ps", function()
+pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'ui-select')
+
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+vim.keymap.set("n", "<leader>sf", builtin.find_files, {})
+vim.keymap.set("n", "<leader>sg", builtin.git_files, {})
+vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set("n", "<leader>st", function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 
+vim.keymap.set('v', '<space>st', function()
+	local text = vim.getVisualSelection()
+	builtin.grep_string({ search = text })
+end, { noremap = true, silent = true })
