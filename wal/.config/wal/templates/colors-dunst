@@ -350,8 +350,8 @@
 [urgency_critical]
     background = "{background}"
     foreground = "{foreground}"
-    frame_color = "#ff0000"
-    timeout = 0
+    frame_color = "#FB716B"
+    timeout = 90
     override_pause_level = 60
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon

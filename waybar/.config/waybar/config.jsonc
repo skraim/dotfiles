@@ -3,6 +3,7 @@
         "height": 32,
         "spacing": 7,
         "reload_style_on_change": true,
+        // "position": "left",
         "output": [
             "HDMI-A-1"
         ],
@@ -15,6 +16,7 @@
             "hyprland/window"
         ],
         "modules-right": [
+            "privacy",
             "pulseaudio",
             "group/hardware",
             "network",
@@ -24,7 +26,8 @@
         "custom/arch": {
             "tooltip": false,
             "format": "{icon}",
-            "format-icons": "󰣇"
+            "format-icons": "󰣇",
+            "on-click": "$HOME/.config/rofi/scripts/launcher_t1_drun"
         },
         "group/oth": {
             "orientation": "horizontal",
@@ -101,7 +104,8 @@
                 "▆",
                 "▇",
                 "<span color='#f55'>█</span>"
-            ]        },
+            ]
+        },
         "memory": {
             "format": "{icon}",
             "format-icons": [
@@ -183,7 +187,7 @@
             "format": "{}",
             "return-type": "json",
             "exec": "~/scripts/vpn-indicator.sh",
-            "on-click": "~/scripts/toggle-vpn.sh",
+            "on-click": "~/scripts/toggle-snx.sh",
             "restart-interval": 5
         },
         "custom/kb-layout": {
@@ -207,7 +211,24 @@
             "interval": 300,
             "exec": "~/scripts/package-updates.sh",
             "signal": 1
-        }
+        },
+        "privacy": {
+            "icon-spacing": 4,
+            "icon-size": 18,
+            "transition-duration": 250,
+            "modules": [
+                {
+                    "type": "screenshare",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-in",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                }
+            ]
+        },
     },
     {
         "height": 25,
@@ -221,7 +242,11 @@
             "hyprland/workspaces",
             "hyprland/submap"
         ],
+        "modules-center": [
+            "hyprland/window"
+        ],
         "modules-right": [
+            "privacy",
             "pulseaudio",
             "group/hardware",
             "network",
@@ -231,7 +256,8 @@
         "custom/arch": {
             "tooltip": false,
             "format": "{icon}",
-            "format-icons": "󰣇"
+            "format-icons": "󰣇",
+            "on-click": "$HOME/.config/rofi/scripts/launcher_t1_drun"
         },
         "group/oth": {
             "orientation": "horizontal",
@@ -271,7 +297,7 @@
         },
         "hyprland/window": {
             "separate-outputs": true,
-            "format": "{initialTitle}"
+            "format": "{initialClass}"
         },
         "hyprland/submap": {
             "format": "󰺟 {}",
@@ -391,7 +417,7 @@
             "format": "{}",
             "return-type": "json",
             "exec": "~/scripts/vpn-indicator.sh",
-            "on-click": "~/scripts/toggle-vpn.sh",
+            "on-click": "~/scripts/toggle-snx.sh",
             "restart-interval": 5
         },
         "custom/kb-layout": {
@@ -415,6 +441,23 @@
             "interval": 3600,
             "exec": "~/scripts/package-updates.sh",
             "signal": 1
-        }
+        },
+        "privacy": {
+            "icon-spacing": 4,
+            "icon-size": 18,
+            "transition-duration": 250,
+            "modules": [
+                {
+                    "type": "screenshare",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-in",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                }
+            ]
+        },
     }
 ]

@@ -129,6 +129,20 @@ require("nvim-tree").setup({
 	}
 })
 
+local prev = { new_name = "", old_name = "" }
+vim.api.nvim_create_autocmd("User", {
+  pattern = "NvimTreeSetup",
+  callback = function()
+    local events = require("nvim-tree.api").events
+    events.subscribe(events.Event.NodeRenamed, function(data)
+      if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
+        data = data
+        Snacks.rename.on_rename_file(data.old_name, data.new_name)
+      end
+    end)
+  end,
+})
+
 vim.keymap.set("n", "<leader>tt", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Nvim Tree Toggle" })
 vim.keymap.set("n", "<leader>tf", ":NvimTreeFindFile<CR>",
 	{ noremap = true, silent = true, desc = "Nvim Tree Focus on file" })

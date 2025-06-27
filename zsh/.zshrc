@@ -3,7 +3,7 @@ TERM="xterm-256color"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-AUTO_NOTIFY_IGNORE+=("docker" "man" "sleep" "yazi" "y" "nvim" "lazygit" "lg" "tmux" "tmuxp" "gpg")
+AUTO_NOTIFY_IGNORE+=("docker" "man" "sleep" "yazi" "y" "nvim" "lazygit" "lg" "tmux" "tmuxp" "gpg" "bluetui")
 KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty/"
 
 bindkey -e
@@ -44,14 +44,22 @@ bindkey '^[[B' history-substring-search-down
 alias ls="${aliases[ls]:-ls} -lhA --color=auto"
 alias lg="lazygit"
 alias :q="exit"
+alias txl="tmuxp load"
+alias txk="tmux kill-session"
+alias txa="tmux a"
+alias txls="tmux ls"
+alias tx="tmux"
+alias gd="cd ~/Downloads"
+alias ge="cd /run/media/$USER"
+alias v="nvim"
 
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }
 
 # OPTS
@@ -63,12 +71,13 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY
 
-path=(~/.local/bin ~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-linux64/bin $path)
+path=(~/.local/share/pnpm ~/.local/bin ~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-linux64/bin $path)
 terminal=(~/.local/bin/kitty)
 
 # redefine what is ignored by auto-notify
 export PATH
 export TERMCMD="wezterm start --always-new-process"
+export GOOSE_DISABLE_KEYRING=1
 
 (cat ~/.cache/wal/sequences &)
 if [[ -o interactive ]]; then

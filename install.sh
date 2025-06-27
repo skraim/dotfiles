@@ -6,7 +6,7 @@ sudo pacman -S sddm nvim git curl zsh ripgrep fzf tmux tmuxp btop dunst udiskie 
     imagemagick rofi-wayland pipewire waybar hyprpaper telegram-desktop pipewire-alsa \
     pipewire-jack pipewire-pulse sof-firmware unzip bluez bluez-utils otf-font-awesome jq \
     xdg-desktop-portal-hyprland cliphist qmk hyprlock hypridle brightnessctl wget cronie \
-    wireplumber xorg-xhost timashift yazi jdk-openjdk maven ffmpegthumbnailer p7zip poppler fd \
+    wireplumber xorg-xhost timeshift yazi jdk-openjdk maven ffmpegthumbnailer p7zip poppler fd \
     zoxide vlc ctags bc pavucontrol powertop handlr-regex qbittorrent
 
 sudo pacman -S --needed base-devel

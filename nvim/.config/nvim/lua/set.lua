@@ -1,7 +1,6 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
@@ -37,23 +36,26 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 vim.opt.cursorline = true
+vim.o.winborder = 'rounded'
 
 vim.g.mapleader = " "
 
+vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lua", "javascript", "typescript", "javascriptreact", "typescriptreact", "java", "hyprlang" },
-    callback = function()
-        vim.opt_local.spell = true
-        vim.opt_local.spelllang = "en_us"
-        vim.opt_local.spelloptions = "camel"
-        vim.opt_local.spellcapcheck = ""
-    end,
+  pattern = { "lua", "javascript", "typescript", "javascriptreact", "typescriptreact", "java", "hyprlang" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "en_us"
+    vim.opt_local.spelloptions = "camel"
+    vim.opt_local.spellcapcheck = ""
+  end,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })

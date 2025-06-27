@@ -5,11 +5,27 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, 0);
     color: @color3;
     transition-property: any;
     transition-duration: .5s;
     border-bottom: none;
+}
+
+window#waybar.empty .modules-center {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+window#waybar.fullscreen .modules-center {
+    background-color: @color6;
+    border: solid 1px #000000;
+    padding: 0 100px;
+    border-radius: 8px;
+}
+
+window#waybar.fullscreen #window {
+    color: #000000;
 }
 
 button {
@@ -92,6 +108,30 @@ button:hover {
 
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;
+}
+
+.modules-left, .modules-right {
+    background-color: rgba(0, 0, 0, .5);
+    border: solid 1px @color6;
+}
+
+.modules-left {
+    padding-right: 10px;
+    border-radius: 0 8px 8px 0;
+    border-left: 0px;
+}
+
+.modules-right {
+    padding-left: 10px;
+    border-radius: 8px 0 0 8px;
+    border-right: 0px;
+}
+
+window .modules-center {
+    background-color: rgba(0, 0, 0, .5);
+    border: solid 1px @color6;
+    padding: 0 20px;
+    border-radius: 8px;
 }
 
 .modules-right > widget:last-child > #workspaces {
@@ -215,50 +255,14 @@ button:hover {
 }
 
 #custom-vpn.connected {
-    color: @color6;
+    color: #66CC00;
 }
 
 #custom-dunst.disabled {
-    color: #ff5555;
+    color: #FF5555;
 }
 
-window.eDP-1#waybar #custom-kb-layout {
-    font-size: 8px;
-}
-
-window.eDP-1#waybar #custom-arch {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #hardware {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #workspaces {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #custom-pacman {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #custom-vpn, window.eDP-1#waybar #custom-dunst {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #oth {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #pulseaudio {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #custom-kb-layout {
-    font-size: 16px;
-}
-
-window.eDP-1#waybar #keyboard-state {
+window.eDP-1#waybar * {
     font-size: 16px;
 }
 
