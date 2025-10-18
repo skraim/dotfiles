@@ -6,3 +6,4 @@ nvim/.config/nvim/spell/
 tmuxp/.tmuxp/*
 !tmuxp/.tmuxp/dot.yaml
 yazi/.config/yazi/*
+quickshell/.config/quickshell/.qmlls.ini
