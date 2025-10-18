@@ -10,7 +10,7 @@ while [ "$result" != "ok" ] && [ "$attempt" -le "$limit" ]; do
 done
 
 if [ "$attempt" -le "$limit" ]; then
-    hyprctl hyprpaper wallpaper "HDMI-A-1,$(< "${HOME}/.cache/wal/wal")"
+    hyprctl hyprpaper wallpaper "desc:Xiaomi Corporation Mi Monitor,$(< "${HOME}/.cache/wal/wal")"
     hyprctl hyprpaper wallpaper "eDP-1,$(< "${HOME}/.cache/wal/wal")"
     systemctl --user restart dunst
 fi

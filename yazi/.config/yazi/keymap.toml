@@ -154,6 +154,14 @@ keymap = [
 	{ on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
 	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
 
+        # Background setting
+	{ on = [ "B", "d" ], run = '''
+        shell 'wal --cols16 lighten -i $@ -n -o ~/scripts/post-pywal.sh' --confirm
+''',    desc = "Set as a background (dark theme)" },
+	{ on = [ "B", "l" ], run = '''
+        shell 'wal -l -i $@ -n -o ~/scripts/post-pywal.sh' --confirm
+''',    desc = "Set as a background (light theme)" },
+
 	# Tasks
 	{ on = "w", run = "tasks_show", desc = "Show task manager" },
 

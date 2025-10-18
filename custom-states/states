@@ -1,3 +1,5 @@
 KB_LAYOUT="graphite"
 GP_GATEWAY=""
 GP_USER=""
+SNX_PASS_KEY="general/work/msc"
+SNX_OTP_KEY="otp/work/msc"

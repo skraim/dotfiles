@@ -2,4 +2,7 @@ wal/.config/wal/colorscheme/
 yazi/.config/yazi/package.toml
 yazi/.config/yazi/plugins/full-border.yazi
 yazi/.config/yazi/plugins/smart-enter.yazi
-todo.txt
+nvim/.config/nvim/spell/ 
+tmuxp/.tmuxp/*
+!tmuxp/.tmuxp/dot.yaml
+yazi/.config/yazi/*

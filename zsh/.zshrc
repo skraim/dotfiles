@@ -3,7 +3,7 @@ TERM="xterm-256color"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-AUTO_NOTIFY_IGNORE+=("docker" "man" "sleep" "yazi" "y" "nvim" "lazygit" "lg" "tmux" "tmuxp" "gpg" "bluetui")
+AUTO_NOTIFY_IGNORE+=("docker" "man" "sleep" "yazi" "y" "nvim" "lazygit" "lg" "tmux" "tmuxp" "gpg" "bluetui" "bc")
 KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty/"
 
 bindkey -e
@@ -41,7 +41,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # ALIASES
-alias ls="${aliases[ls]:-ls} -lhA --color=auto"
+alias ls="ls -lhA --color=auto --group-directories-first"
 alias lg="lazygit"
 alias :q="exit"
 alias txl="tmuxp load"
@@ -51,12 +51,24 @@ alias txls="tmux ls"
 alias tx="tmux"
 alias gd="cd ~/Downloads"
 alias ge="cd /run/media/$USER"
+alias gp="cd ~/Pictures"
 alias v="nvim"
+alias cam="guvcview"
+alias fd="fd --hidden"
+alias rg="rg --hidden"
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias cat="bat"
+alias trash="gio trash"
+
+function help() {
+    "$@" --help 2>&1 | bat --plain --language=help
+}
 
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
     yazi "$@" --cwd-file="$tmp"
-    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    if cwd="$(command \cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
         builtin cd -- "$cwd"
     fi
     rm -f -- "$tmp"
@@ -74,14 +86,16 @@ setopt EXTENDED_HISTORY
 path=(~/.local/share/pnpm ~/.local/bin ~/scripts /usr/mvn/apache-maven-3.9.6/bin ~/bin /opt/nvim-linux64/bin $path)
 terminal=(~/.local/bin/kitty)
 
-# redefine what is ignored by auto-notify
 export PATH
-export TERMCMD="wezterm start --always-new-process"
-export GOOSE_DISABLE_KEYRING=1
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout reverse --height 40% --preview='bat -p --color=always {}'"
+export MANPAGER="/bin/sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 
-(cat ~/.cache/wal/sequences &)
+(\cat ~/.cache/wal/sequences &)
 if [[ -o interactive ]]; then
     fastfetch
 fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source <(fzf --zsh)

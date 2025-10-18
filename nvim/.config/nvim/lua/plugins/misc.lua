@@ -1,13 +1,7 @@
 return {
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    opts = {}
-  },
   "nvim-tree/nvim-web-devicons",
   "mbbill/undotree",
   { "brenoprata10/nvim-highlight-colors", opts = {} },
-  "nvim-tree/nvim-tree.lua",
-  "echasnovski/mini.ai",
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -56,11 +50,25 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },     -- if you prefer nvim-web-devicons
-    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
   },
   {
     "stevearc/overseer.nvim",
-    opts = {}
+    opts = {},
   },
+  {
+    "bngarren/checkmate.nvim",
+    ft = "markdown",
+    opts = {},
+  },
+  {
+    "Wansmer/treesj",
+    keys = { '<leader>m' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {},
+  }
 }

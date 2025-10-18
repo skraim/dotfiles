@@ -11,7 +11,7 @@ require("mason").setup {
 local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup {
-    ensure_installed = { "lua_ls", "ts_ls", "jdtls" },
+    ensure_installed = { "lua_ls", "ts_ls", "jdtls", "qmlls" },
     automatic_enable = {
         exclude = {
             "jdtls"

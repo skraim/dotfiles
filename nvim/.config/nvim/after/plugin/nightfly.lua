@@ -1,6 +1,6 @@
 vim.g.nightflyCursorColor = true
 vim.g.nightflyTransparent = true
-
+vim.g.nightflyWinSeparator = 2
 vim.cmd [[
     colorscheme nightfly
     highlight Normal ctermbg=NONE guibg=NONE
@@ -17,7 +17,5 @@ vim.cmd [[
     highlight BlinkCmpDocSeparator guibg=NONE guifg=#82AAFF
     highlight BlinkCmpSignatureHelpBorder guibg=NONE guifg=#82AAFF
     highlight LspInlayHint ctermfg=NONE guifg=#7C8F8F gui=italic
-    highlight GooseBorder ctermbg=NONE guibg=NONE guifg=#82AAFF
-    highlight GooseBackground ctermbg=NONE guibg=NONE guifg=#82AAFF
 ]]
 

@@ -3,7 +3,7 @@
 DOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 sudo pacman -S sddm nvim git curl zsh ripgrep fzf tmux tmuxp btop dunst udiskie fastfetch \
-    imagemagick rofi-wayland pipewire waybar hyprpaper telegram-desktop pipewire-alsa \
+    imagemagick rofi-wayland pipewire hyprpaper telegram-desktop pipewire-alsa \
     pipewire-jack pipewire-pulse sof-firmware unzip bluez bluez-utils otf-font-awesome jq \
     xdg-desktop-portal-hyprland cliphist qmk hyprlock hypridle brightnessctl wget cronie \
     wireplumber xorg-xhost timeshift yazi jdk-openjdk maven ffmpegthumbnailer p7zip poppler fd \
@@ -53,6 +53,7 @@ stow scripts
 stow kitty
 stow yazi
 stow handlr
+stow quickshell
 
 # bspwm
 # stow picom
@@ -62,14 +63,12 @@ stow handlr
 # stow betterlockscreen
 
 # hyprland
-stow waybar
-stow wlogout
 stow hypr
 
 ya pack -a yazi-rs/plugins:smart-enter
 ya pack -a yazi-rs/plugins:full-border
 
-cp $DOT_DIR/custom-states/states $HOME/
+cp $DOT_DIR/custom-states/* $HOME/
 mkdir -p $HOME/.config/dunst
 ln -s $HOME/.cache/wal/colors-dunst $HOME/.config/dunst/dunstrc
 

@@ -77,4 +77,9 @@ if kb_layout == 'graphite' then
   vim.keymap.set("n", "<C-w>h", "<C-w>j", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-W>a", "<C-W>k", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-W>e", "<C-W>l", { noremap = true, silent = true })
+
+  vim.keymap.set("n", "<C-w>Y", "<C-w>H", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-w>H", "<C-w>J", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-W>A", "<C-W>K", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-W>E", "<C-W>L", { noremap = true, silent = true })
 end

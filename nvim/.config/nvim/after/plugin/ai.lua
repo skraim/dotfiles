@@ -1,45 +1,39 @@
-require('goose').setup({
-    default_global_keymaps = false, -- If false, disables all default global keymaps
-    keymap = {
-        global = {
-            toggle = '<leader>gg',           -- Open goose. Close if opened
-            open_input = '<leader>gi',       -- Opens and focuses on input window on insert mode
-            open_input_new_session = '<leader>gI', -- Opens and focuses on input window on insert mode. Creates a new session
-            open_output = '<leader>go',      -- Opens and focuses on output window
-            toggle_focus = '<leader>gt',     -- Toggle focus between goose and last window
-            toggle_fullscreen = '<leader>gf', -- Toggle between normal and fullscreen mode
-            select_session = '<leader>gS',   -- Select and load a goose session
-            diff_open = '<leader>gd',        -- Opens a diff tab of a modified file since the last goose prompt
-        },
-        window = {
-            submit = '<cr>',         -- Submit prompt
-            close = '<esc>',         -- Close UI windows
-            stop = '<C-c>',          -- Stop goose while it is running
-            next_message = ']]',     -- Navigate to next message in the conversation
-            prev_message = '[[',     -- Navigate to previous message in the conversation
-            mention_file = '@',      -- Pick a file and add to context. See File Mentions section
-            toggle_pane = '<tab>',   -- Toggle between input and output panes
-            prev_prompt_history = '<up>', -- Navigate to previous prompt in history
-            next_prompt_history = '<down>' -- Navigate to next prompt in history
-        }
-    },
-    ui = {
-        window_width = 0.35,  -- Width as percentage of editor width
-        input_height = 0.15,  -- Input height as percentage of window height
-        fullscreen = false,   -- Start in fullscreen mode (default: false)
-        layout = "right",     -- Options: "center" or "right"
-        floating_height = 0.8, -- Height as percentage of editor height for "center" layout
-        display_model = true, -- Display model name on top winbar
-        display_goose_mode = true -- Display mode on top winbar: auto|chat
-    },
-    providers = {
-        openrouter = {
-            "anthropic/claude-4-sonnet",
-        }
-    }
+local ingest = require("nvim-ctx-ingest")
+local ingestUi = require('nvim-ctx-ingest.ui')
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "nvim-ctx-ingest" then
+      local opts = { buffer = true, nowait = true }
+      vim.keymap.set("n", "y", function()
+        ingestUi.handle_keypress("h")
+      end, opts)
+      vim.keymap.set("n", "h", "j", opts)
+      vim.keymap.set("n", "a", "k", opts)
+      vim.keymap.set("n", "e", function()
+        ingestUi.handle_keypress("l")
+      end, opts)
+      vim.keymap.set("n", "<CR>", function()
+        ingest.ingest()
+      end, opts)
+      vim.keymap.set("n", "p", function()
+        ingestUi.handle_keypress(" ")
+      end, opts)
+      vim.keymap.set("n", "<ESC>", function()
+        ingestUi.close_window()
+      end, opts)
+      vim.keymap.set("n", "q", function()
+        ingestUi.close_window()
+      end, opts)
+      vim.keymap.set("n", "i", function()
+        ingest.add_pattern("include")
+      end, opts)
+      vim.keymap.set("n", "x", function()
+        ingest.add_pattern("exclude")
+      end, opts)
+    end
+  end,
 })
 
-vim.api.nvim_set_hl(0, "GooseBorder", {
-    ctermbg = "NONE",
-    fg = "#82AAFF"
-})
+vim.keymap.set("n", "<leader>C", "<cmd>Codeium Toggle<CR>", { desc = "Toggle Codeium", noremap = true, silent = true })

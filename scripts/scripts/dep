@@ -1,0 +1,79 @@
+#!/bin/bash
+
+CONFIG_FILE="../mvn-deploy-data"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Error: Configuration file '$CONFIG_FILE' not found!"
+    exit 1
+fi
+
+source "$CONFIG_FILE"
+
+execute_maven() {
+    local port=$1
+    local skip_tests=$2
+    
+    local cmd="mvn clean install"
+    
+    if [ "$skip_tests" = true ]; then
+        cmd="$cmd -DskipTests=true"
+    fi
+    
+    cmd="$cmd -Daem.port=$port -P $PROFILES"
+    
+    echo "Executing: $cmd"
+    eval $cmd
+}
+
+case "$1" in
+    "")
+        if [ "$DEFAULT_INS" = "publish" ]; then
+            execute_maven "$PUBLISH_PORT" "$SKIP_TESTS"
+        else
+            execute_maven "$AUTHOR_PORT" "$SKIP_TESTS"
+        fi
+        ;;
+    "publish")
+        case "$2" in
+            "")
+                execute_maven "$PUBLISH_PORT" true
+                ;;
+            "test")
+                execute_maven "$PUBLISH_PORT" false
+                ;;
+            *)
+                echo "Unknown argument: $2"
+                echo "Usage: dep publish [test]"
+                exit 1
+                ;;
+        esac
+        ;;
+    "author")
+        case "$2" in
+            "")
+                execute_maven "$AUTHOR_PORT" true
+                ;;
+            "test")
+                execute_maven "$AUTHOR_PORT" false
+                ;;
+            *)
+                echo "Unknown argument: $2"
+                echo "Usage: dep author [test]"
+                exit 1
+                ;;
+        esac
+        ;;
+
+    "test")
+        execute_maven "$AUTHOR_PORT" false
+        ;;
+    *)
+        echo "Unknown argument: $1"
+        echo "Usage:"
+        echo "  dep              - deploy to default instance"
+        echo "  dep publish      - deploy to publish instance" 
+        echo "  dep publish test - deploy to publish instance with tests"
+        echo "  dep test         - deploy to author instance with tests"
+        exit 1
+        ;;
+esac
