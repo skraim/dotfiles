@@ -10,5 +10,9 @@ exec = "chromium %u"
 regexes = ['(https://)?(.*\.)?azure\.com/*.']
 
 [[handlers]]
+exec = "chromium %u"
+regexes = ['(https://)?(.*\.)?clickup\.com/*.']
+
+[[handlers]]
 exec = "orca-slicer %u"
 regexes = ['.+\.step']
